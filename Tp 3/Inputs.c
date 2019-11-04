@@ -40,6 +40,26 @@ int getInt(int* valor, char message[],char eMessage[], int lowLimit, int hiLimit
     return retorno;
 }
 
+
+int getIntIlimit(int* valor, char message[],char eMessage[], int lowLimit)
+{
+    int retorno;
+    int numeroAux;
+
+    printf("%s", message);
+    scanf("%d",&numeroAux);
+
+    if(*valor<lowLimit)
+    {
+        printf("%s\n", eMessage);
+        retorno = -1;
+
+    }else{
+              retorno = 0;
+    }
+    return retorno;
+}
+
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float hiLimit)
@@ -74,6 +94,26 @@ int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float 
     return retorno;
 }
 
+
+int getFloatIlimit(float* valor,char message[],char eMessage[], float lowLimit)
+{
+    int retorno;
+    float numeroAux;
+
+
+    printf("%s", message);
+    scanf("%f", &numeroAux);
+
+    if(*valor<lowLimit)
+    {
+        printf("%s\n", eMessage);
+        retorno = -1;
+
+    }else{
+              retorno = 0;
+    }
+    return retorno;
+}
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 int validarNumero(char* numeroChar)

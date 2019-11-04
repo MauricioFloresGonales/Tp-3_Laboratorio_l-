@@ -23,11 +23,19 @@ int main()
 {
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    FILE* pFile;
+    Employee empleados;
+
+
     do{
+        while(getInt(&option,"1-cargar en modo texto\n2- mostrar todos los empleados\nIngrese su opcion: ","Error,solo puedes ingresar del [1] al [10]",1,10)!=0);
         switch(option)
         {
             case 1:
                 controller_loadFromText("data.csv",listaEmpleados);
+                break;
+            case 2:
+                mostrarTodosLosEmpleado(listaEmpleados,empleados);
                 break;
         }
     }while(option != 10);

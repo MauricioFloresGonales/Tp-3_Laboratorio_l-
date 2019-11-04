@@ -46,7 +46,7 @@ Node* test_getNode(LinkedList* this, int nodeIndex);
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
 //--------------------------------------------------------------------------------------
 int ll_add(LinkedList* this, void* pElement);
-///Agrega un elemento(devuelvesi pudo agragarlo o no)
+///Agrega un elemento(de vuelve si pudo agragarlo o no)
 /// [o] si esta bien - [-1] si es puntero NULL
 //--------------------------------------------------------------------------------------
 void* ll_get(LinkedList* this, int index);
@@ -54,7 +54,7 @@ void* ll_get(LinkedList* this, int index);
 //--------------------------------------------------------------------------------------
 int ll_set(LinkedList* this, int index,void* pElement);
 ///pone un elemento por encima de otro(?)
-//--------------------------------------------------------------------------------------
+//------------------------------------------------------------- -------------------------
 int ll_remove(LinkedList* this,int index);
 ///le paso un elemento en particular y me lo saca
 //--------------------------------------------------------------------------------------

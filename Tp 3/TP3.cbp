@@ -15,7 +15,7 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library=".\LinkedList.a" />
+					<Add library="./LinkedList.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -28,7 +28,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library=".\LinkedList.a" />
+					<Add library="./LinkedList.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -48,6 +48,10 @@
 		</Unit>
 		<Unit filename="Inputs.h" />
 		<Unit filename="LinkedList.h" />
+		<Unit filename="funcionesAux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionesAux.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

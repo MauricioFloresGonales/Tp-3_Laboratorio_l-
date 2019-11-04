@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include "parser.h"
+
+#include "Inputs.h"
+#include "funcionesAux.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -13,7 +17,19 @@
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* pFile;
+    int retorno = -1;
+
+    if(pFile!=NULL)
+    {
+        pFile = fopen(path,"r");
+
+        retorno = parser_EmployeeFromText(pFile,pArrayListEmployee);
+
+        fclose(pFile);
+    }
+
+    return retorno;
 }
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
@@ -37,6 +53,17 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
+    Employee* empleado = employee_new();
+    int puede;
+
+    puede = agregarEmpleado(pArrayListEmployee,empleado);
+    if(puede == 0)
+    {
+        ll_add(pArrayListEmployee,empleado);
+    }else{
+        printf("Empleado no agregado\n");
+    }
+
     return 1;
 }
 
@@ -49,6 +76,15 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
+    Employee* empleadoAux;
+    int modificar;
+
+    //mostrarTodosLosEmpleado(pArrayListEmployee);
+    getIntIlimit(&modificar,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
+    empleadoAux = (Employee*)ll_get(pArrayListEmployee,modificar);
+
+
+
     return 1;
 }
 
