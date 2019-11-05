@@ -170,11 +170,14 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
 }
 
 
-void mostrarEmpleado(Employee* emp){
-    if(emp != NULL){
-    printf("%d  %5s  %5d  %5f\n", emp->id, emp->nombre, emp->horasTrabajadas, emp->sueldo);
+void mostrarEmpleado(Employee* emp)
+{
+    if(emp != NULL)
+    {
+        printf("\t%d   %-11s %5d hs   $%9.2f\n", emp->id, emp->nombre, emp->horasTrabajadas, emp->sueldo);
     }
 }
+
 
 int compararPorLegajo(void* empleadoUno,void* empleadoDos)
 {

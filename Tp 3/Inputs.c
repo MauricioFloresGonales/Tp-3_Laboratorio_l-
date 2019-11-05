@@ -44,18 +44,30 @@ int getInt(int* valor, char message[],char eMessage[], int lowLimit, int hiLimit
 int getIntIlimit(int* valor, char message[],char eMessage[], int lowLimit)
 {
     int retorno;
-    int numeroAux;
+    char numeroAux[100];
+    int validador;
 
     printf("%s", message);
-    scanf("%d",&numeroAux);
+    fflush(stdin);
+    scanf("%s", numeroAux);
 
-    if(*valor<lowLimit)
+    validador = validarNumero(numeroAux);
+
+    *valor=atoi(numeroAux);
+
+    if(validador==0)
     {
+        if(*valor<lowLimit)
+        {
+            printf("%s\n", eMessage);
+            retorno = -1;
+
+        }else{
+              retorno = 0;
+        }
+    }else{
         printf("%s\n", eMessage);
         retorno = -1;
-
-    }else{
-              retorno = 0;
     }
     return retorno;
 }
@@ -98,19 +110,31 @@ int getFloat(float* valor,char message[],char eMessage[], float lowLimit, float 
 int getFloatIlimit(float* valor,char message[],char eMessage[], float lowLimit)
 {
     int retorno;
-    float numeroAux;
+    char numeroAux[100];
+    int validador;
 
 
     printf("%s", message);
-    scanf("%f", &numeroAux);
+    fflush(stdin);
+    scanf("%s", numeroAux);
 
-    if(*valor<lowLimit)
+    validador = validarNumero(numeroAux);
+
+    *valor=atof(numeroAux);
+
+    if(validador==0)
     {
+        if(*valor<lowLimit)
+        {
+            printf("%s\n", eMessage);
+            retorno = -1;
+
+        }else{
+              retorno = 0;
+        }
+    }else{
         printf("%s\n", eMessage);
         retorno = -1;
-
-    }else{
-              retorno = 0;
     }
     return retorno;
 }

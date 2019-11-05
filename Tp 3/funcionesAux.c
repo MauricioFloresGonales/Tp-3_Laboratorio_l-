@@ -1,11 +1,11 @@
 #include "funcionesAux.h"
 
-int idAuto(LinkedList* pArrayListEmployee,Employee* empleado,int valMenor)
+int idAuto(LinkedList* pArrayListEmployee,int valMenor)
 {
     int indexAnterior;
     int idFinal;
 
-    indexAnterior = idMayor(pArrayListEmployee,empleado,valMenor);
+    indexAnterior = idMayor(pArrayListEmployee,valMenor);
 
     idFinal = indexAnterior +1;
 
@@ -13,8 +13,9 @@ int idAuto(LinkedList* pArrayListEmployee,Employee* empleado,int valMenor)
 
 }
 
-int idMayor(LinkedList* pArrayListEmployee,Employee* empleado,int valMenor)
+int idMayor(LinkedList* pArrayListEmployee,int valMenor)
 {
+    Employee* empleadoAux;
     int i;
     int mayor = valMenor-1;
     int len;
@@ -23,9 +24,11 @@ int idMayor(LinkedList* pArrayListEmployee,Employee* empleado,int valMenor)
 
     for(i=0;i<len;i++)
     {
-        if(mayor<empleado[i].id)
+        empleadoAux = ll_get(pArrayListEmployee,i);
+
+        if(mayor<empleadoAux[i].id)
         {
-            mayor = empleado[i].id;
+            mayor = empleadoAux[i].id;
         }
     }
     return mayor;
@@ -39,10 +42,10 @@ int agregarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
     float salarioAux;
     int retorno;
 
-    id = idAuto(pArrayListEmployee,empleado,1);
+    id = idAuto(pArrayListEmployee,1);
     while(getString(nombreAux,"ingrese el Nombre: ","Error,solo puede ingresar [51] caracteres\n","Error,No puede ingresa numeros\n",1,51)!=0);
-    while(getInt(&horasAux,"Ingrese las horas de trabajo: ","Error,el dia solo tiene 24hs",0,24)!=0);
-    while(getFloatIlimit(&salarioAux,"Ingrese el Salario: ","Error,no puede ingresar letras",1))
+    while(getIntIlimit(&horasAux,"Ingrese las horas Trabajadas: ","Error,tiene que ser mayor a cero",0)!=0);
+    while(getFloatIlimit(&salarioAux,"Ingrese el Salario: ","Error,no puede ingresar letras",1)!=0);
 
     printf("%d  %5s  %5d  %5f\n",id,nombreAux,horasAux,salarioAux);
 
@@ -59,81 +62,76 @@ int agregarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
     return retorno;
 }
 
-void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee,Employee* empleados)
+void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee)
 {
+    Employee* empleadosAux;
     int len;
     int i;
 
     len = ll_len(pArrayListEmployee);
-
+    printf("\tId   Nombre\t  Horas    Salario\n");
     for(i=0;i<len;i++)
     {
-        mostrarEmpleado(empleados);
+        empleadosAux = ll_get(pArrayListEmployee,i);
+        mostrarEmpleado(empleadosAux);
     }
 }
 
-int validaId(LinkedList* pArrayListEmployee,Employee* empleados,int id)
+int validaId(LinkedList* pArrayListEmployee,int id)
 {
-    int i;
-    int len;
-    int retorno = -1;
-    len = ll_len(pArrayListEmployee);
+    Employee* empleados = employee_new();
+    int retorno;
 
-    for(i=0;i<len;i++)
-    {
-        if(id==empleados[i].id)
-        {
-            retorno = 0;
-            break;
-        }
-    }
+    employee_setId(empleados,id);
+
+    retorno = ll_contains(pArrayListEmployee,(Employee*)empleados->id);
+
+    free(empleados);
 
     return retorno;
 }
 
-void modicficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
+void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
 {
-    /*Employee* empleadoAux;
-    int index;
+    char nombreAux[51];
+    int horasAux;
+    float sueldoAux;
     int opcion;
-    int id;
-    getIntIlimit()
-    index = validaId(pArrayListEmployee,empleado);
 
     do{
-            getInt(&opcion,"Modificar:\n1-Nombre\n2-Horas Trabajadas\n3-Sueldo\n4-Salir\nOpcion: ","Solo puede ingresar los numeros que aparecen en el menu",1,4);
-            switch(opcion)
-            {
+        getInt(&opcion,"Modificar:\n1-Nombre\n2-Horas Trabajadas\n3-Sueldo\n4-Salir\nOpcion: ","Solo puede ingresar los numeros que aparecen en el menu",1,4);
+        switch(opcion)
+        {
             case 1:
-                while(getString(empleadoAux.nombre,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
+                while(getString(nombreAux,"Ingrese el Nombre: ","El limite de caracteres fue pasado","No puede ingresar numeros",0,51)!=0);
                 if(confirmar("Confirmar:","Canselar:")==0)
                 {
-                    strcpy(empleado[index].nombre,empleadoAux.nombre);
+                    employee_setNombre(empleado,nombreAux);
                 }else{
                     printf("La operecion fue cancelada.\n");
                 }
                 break;
             case 2:
-                while(getInt(&empleadoAux.horasTrabajadas,"Ingrese las horas: ","Error,el dia tiene 24hs",0,24)!=0);
+                while(getInt(&horasAux,"Ingrese las horas: ","Error,el dia tiene 24hs",0,24)!=0);
                 if(confirmar("Confirmar:","Canselar:")==0)
                 {
-                    empleado[index].horasTrabajadas,empleadoAux.horasTrabajadas);
+                    employee_setHorasTrabajadas(empleado,horasAux);
                 }else{
                     printf("La operecion fue cancelada.\n");
                 }
                 break;
             case 3:
-                while(getFloatIlimit(&empleadoAux.sueldo,"Ingrese el sueldo a modificar: ","Error,no puedes ingresar letras",0)!=0);
+                while(getFloatIlimit(&sueldoAux,"Ingrese el sueldo a modificar: ","Error,no puedes ingresar letras",0)!=0);
                 if(confirmar("Confirmar:","Canselar:")==0)
                 {
-                    empleado[index].sueldo = empleadoAux.sueldo;
+                    employee_setSueldo(empleado,sueldoAux);
                 }else{
                     printf("La operecion fue cancelada.\n");
                 }
-                break;
+                    break;
             default:
                 printf("salir");
             }
 
-    }while(opcion != 4);*/
+        }while(opcion != 4);
 }

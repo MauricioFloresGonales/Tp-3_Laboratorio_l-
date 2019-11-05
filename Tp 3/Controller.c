@@ -76,12 +76,22 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    Employee* empleadoAux;
+    Employee* empleadoAux = employee_new();
     int modificar;
 
-    //mostrarTodosLosEmpleado(pArrayListEmployee);
-    getIntIlimit(&modificar,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
-    empleadoAux = (Employee*)ll_get(pArrayListEmployee,modificar);
+    mostrarTodosLosEmpleado(pArrayListEmployee);
+    getIntIlimit(&empleadoAux->id,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
+
+    modificar =  ll_indexOf(pArrayListEmployee,(Employee*)empleadoAux->id);
+
+    if(validaId(pArrayListEmployee,modificar)==0)
+    {
+        empleadoAux = ll_get(pArrayListEmployee,modificar);
+        modicaficarEmpleado(pArrayListEmployee,empleadoAux);
+        //int ll_set(LinkedList* this, int index,void* pElement);PODRIA USAR ESTA FUNCION PARA NO USAR LA FUNCION DE ARRIBA??
+        ll_push(pArrayListEmployee,modificar,(Employee*)empleadoAux);//ESTA BIEN ?
+    }
+
 
 
 

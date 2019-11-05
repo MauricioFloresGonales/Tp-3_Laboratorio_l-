@@ -6,8 +6,9 @@
 
 #include "Inputs.h"
 
-int idAuto(LinkedList* pArrayListEmployee,Employee* ,int valMenor);
-int idMayor(LinkedList* pArrayListEmployee,Employee* ,int valMenor);
-int agregarEmpleado(LinkedList* pArrayListEmployee,Employee* );
-void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee,Employee* empleados);
-int validaId(LinkedList* pArrayListEmployee,Employee* empleados,int id);
+int idAuto(LinkedList* pArrayListEmployee,int valMenor);
+int idMayor(LinkedList* pArrayListEmployee,int valMenor);
+int agregarEmpleado(LinkedList* pArrayListEmployee,Employee*);
+void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee);
+int validaId(LinkedList* pArrayListEmployee,int id);
+void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* );

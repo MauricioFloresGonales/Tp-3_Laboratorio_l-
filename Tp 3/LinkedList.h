@@ -77,7 +77,7 @@ void* ll_pop(LinkedList* this,int index);
 ///elimina / dif con remove es: que pop devuelve el elemnto (lo saca de donde este y lo puedo mover hacia otra parte)
 //--------------------------------------------------------------------------------------
 int ll_contains(LinkedList* this, void* pElement);
-///paso un elemento y me dice si esta o no en la lsita
+///paso un elemento y me dice si esta o no en la lista
 //--------------------------------------------------------------------------------------
 int ll_containsAll(LinkedList* this,LinkedList* this2);
 ///mustra que elementos tengo en la lista

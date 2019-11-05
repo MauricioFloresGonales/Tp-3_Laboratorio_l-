@@ -26,6 +26,7 @@ int employee_getSueldo(Employee* this,float* sueldo);
 
 void mostrarEmpleado(Employee* emp);
 
+
 int compararPorLegajo(void*,void*);
 int compararPorSueldo(void*,void*);
 int compararPorNombre(void*,void*);
