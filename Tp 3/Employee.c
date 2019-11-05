@@ -144,9 +144,19 @@ Employee* employee_new()
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr)
 {
 
-    Employee* this;
 
-        if (idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && sueldoStr != NULL)
+    Employee* em = malloc(sizeof(Employee));
+    if(em!=NULL)
+    {
+    em->id=atoi(idStr);
+    strcpy(em->nombre,nombreStr);
+    em->horasTrabajadas=atoi(horasTrabajadasStr);
+    em->sueldo=atof(sueldoStr);
+    employee_setSueldo(em,atof(sueldoStr));
+
+    }
+return em;
+      /*  if (idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && sueldoStr != NULL)
         {
             this  = employee_new();
 
@@ -164,9 +174,9 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
                             this = NULL;
                        }
             }
-        }
+        }*/
 
-    return this;
+    return em;
 }
 
 

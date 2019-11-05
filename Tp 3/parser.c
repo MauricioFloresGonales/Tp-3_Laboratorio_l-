@@ -56,13 +56,16 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
         char sueldo[51];
         int len;
 
-        len = ll_len(pArrayListEmployee);
-        fwrite(&empleado,sizeof(Employee),len,pFile);
-
+        while(!feof(pFile))
+        {
+            len = ll_len(pArrayListEmployee);
+            fread(&empleado,sizeof(Employee),len,pFile);
+        }
+        /*
         empleado->id = atoi(id);
         strcpy(empleado->nombre,nombre);
         empleado->horasTrabajadas = atoi(horasTrabajadas);
-        empleado->sueldo = atof(sueldo);
+        empleado->sueldo = atof(sueldo);*/
 
         retorno = 0;
     }

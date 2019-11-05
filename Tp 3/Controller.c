@@ -17,12 +17,11 @@
  */
 int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 {
-    FILE* pFile;
+    FILE* pFile = fopen(path,"r");
     int retorno = -1;
 
     if(pFile!=NULL)
     {
-        pFile = fopen(path,"r");
 
         retorno = parser_EmployeeFromText(pFile,pArrayListEmployee);
 
@@ -41,7 +40,17 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* pFile = fopen(path,"rb");
+    int retorno = -1;
+
+    if(pFile!=NULL)
+    {
+
+        retorno = parser_EmployeeFromBinary(pFile,pArrayListEmployee);
+
+        fclose(pFile);
+    }
+    return retorno;
 }
 
 /** \brief Alta de empleados
@@ -55,11 +64,11 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* empleado = employee_new();
     int puede;
-
     puede = agregarEmpleado(pArrayListEmployee,empleado);
     if(puede == 0)
     {
         ll_add(pArrayListEmployee,empleado);
+
     }else{
         printf("Empleado no agregado\n");
     }
@@ -76,24 +85,40 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    Employee* empleadoAux = employee_new();
+    int id;
     int modificar;
 
     mostrarTodosLosEmpleado(pArrayListEmployee);
-    getIntIlimit(&empleadoAux->id,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
+    getIntIlimit(&id,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
 
-    modificar =  ll_indexOf(pArrayListEmployee,(Employee*)empleadoAux->id);
+    Employee* empleadoAux;
+    int len;
+    int i;
 
-    if(validaId(pArrayListEmployee,modificar)==0)
+    len = ll_len(pArrayListEmployee);
+    for(i=0;i<len;i++)
     {
-        empleadoAux = ll_get(pArrayListEmployee,modificar);
-        modicaficarEmpleado(pArrayListEmployee,empleadoAux);
-        //int ll_set(LinkedList* this, int index,void* pElement);PODRIA USAR ESTA FUNCION PARA NO USAR LA FUNCION DE ARRIBA??
-        ll_push(pArrayListEmployee,modificar,(Employee*)empleadoAux);//ESTA BIEN ?
+        empleadoAux =(Employee*) ll_get(pArrayListEmployee,i);
+        int indice = ll_indexOf(pArrayListEmployee, empleadoAux);
+        if(empleadoAux->id == id){
+            employee_setHorasTrabajadas(empleadoAux, 123);
+
+            ll_set(pArrayListEmployee, indice, empleadoAux);
+        }
     }
 
 
 
+
+    modificar =  ll_indexOf(pArrayListEmployee,empleadoAux->id);
+
+    if(validaId(pArrayListEmployee,modificar)==0)
+    {
+        empleadoAux =(Employee*) ll_get(pArrayListEmployee,modificar);
+        modicaficarEmpleado(pArrayListEmployee,empleadoAux);
+        //int ll_set(LinkedList* this, int index,void* pElement);PODRIA USAR ESTA FUNCION PARA NO USAR LA FUNCION DE ARRIBA??
+        ll_push(pArrayListEmployee,modificar, empleadoAux);//ESTA BIEN ?
+    }
 
     return 1;
 }

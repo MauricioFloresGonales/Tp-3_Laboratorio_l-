@@ -21,16 +21,19 @@ int idMayor(LinkedList* pArrayListEmployee,int valMenor)
     int len;
 
     len = ll_len(pArrayListEmployee);
+    printf("len = %d\n",len);
 
     for(i=0;i<len;i++)
     {
-        empleadoAux = ll_get(pArrayListEmployee,i);
-
-        if(mayor<empleadoAux[i].id)
+        empleadoAux = (Employee*)ll_get(pArrayListEmployee,i);
+mostrarEmpleado(empleadoAux);
+        if(mayor<empleadoAux->id)
         {
-            mayor = empleadoAux[i].id;
+            mayor = empleadoAux->id;
+            printf("el mayor es: %d\n",mayor);
         }
-    }
+    }printf("%p\n\n",pArrayListEmployee);
+    printf("el mayor es: %d\n",mayor);
     return mayor;
 }
 
@@ -41,6 +44,7 @@ int agregarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
     int horasAux;
     float salarioAux;
     int retorno;
+
 
     id = idAuto(pArrayListEmployee,1);
     while(getString(nombreAux,"ingrese el Nombre: ","Error,solo puede ingresar [51] caracteres\n","Error,No puede ingresa numeros\n",1,51)!=0);
@@ -72,7 +76,7 @@ void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee)
     printf("\tId   Nombre\t  Horas    Salario\n");
     for(i=0;i<len;i++)
     {
-        empleadosAux = ll_get(pArrayListEmployee,i);
+        empleadosAux =(Employee*) ll_get(pArrayListEmployee,i);
         mostrarEmpleado(empleadosAux);
     }
 }
@@ -84,7 +88,7 @@ int validaId(LinkedList* pArrayListEmployee,int id)
 
     employee_setId(empleados,id);
 
-    retorno = ll_contains(pArrayListEmployee,(Employee*)empleados->id);
+    retorno = ll_contains(pArrayListEmployee,empleados->id);
 
     free(empleados);
 

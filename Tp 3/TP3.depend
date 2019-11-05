@@ -99,15 +99,15 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1572873654 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\employee.c
+1572959596 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\employee.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"Employee.h"
 
-1572868765 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\employee.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\employee.h
 
-1572875364 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\inputs.c
+1572959596 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\inputs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -115,31 +115,33 @@
 	<ctype.h>
 	<conio.h>
 
-1572875452 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\inputs.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\inputs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1572879558 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\main.c
+1572960647 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
+	"Inputs.h"
+	"funcionesAux.h"
 
-1572872656 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\linkedlist.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\linkedlist.h
 
-1572868765 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\controller.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\controller.h
 
-1572879829 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\parser.c
+1572966463 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"LinkedList.h"
 	"Employee.h"
 
-1572880019 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\controller.c
+1572967000 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -148,7 +150,7 @@
 	"Inputs.h"
 	"funcionesAux.h"
 
-1572874233 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.h
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -156,10 +158,10 @@
 	"Employee.h"
 	"Inputs.h"
 
-1572879558 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
+1572967312 source:c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
 	"funcionesAux.h"
 
-1572868765 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\parser.h
+1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\parser.h
 
 1572913012 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\controller.c
 	<stdio.h>
