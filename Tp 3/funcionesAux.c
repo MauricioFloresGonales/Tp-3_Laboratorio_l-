@@ -21,19 +21,16 @@ int idMayor(LinkedList* pArrayListEmployee,int valMenor)
     int len;
 
     len = ll_len(pArrayListEmployee);
-    printf("len = %d\n",len);
 
     for(i=0;i<len;i++)
     {
         empleadoAux = (Employee*)ll_get(pArrayListEmployee,i);
-mostrarEmpleado(empleadoAux);
         if(mayor<empleadoAux->id)
         {
             mayor = empleadoAux->id;
-            printf("el mayor es: %d\n",mayor);
         }
-    }printf("%p\n\n",pArrayListEmployee);
-    printf("el mayor es: %d\n",mayor);
+    }
+    //printf("%p\n\n",pArrayListEmployee);(con esto el profesor pudo encontrar el error
     return mayor;
 }
 
@@ -81,18 +78,33 @@ void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee)
     }
 }
 
-int validaId(LinkedList* pArrayListEmployee,int id)
+int validaId(LinkedList* pArrayListEmployee)
 {
-    Employee* empleados = employee_new();
-    int retorno;
+    Employee* empleadoAux;
+    int id;
+    int len;
+    int i;
+    int indice;
 
-    employee_setId(empleados,id);
+    mostrarTodosLosEmpleado(pArrayListEmployee);
+    while(getIntIlimit(&id,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1)!=0);
 
-    retorno = ll_contains(pArrayListEmployee,empleados->id);
+    len = ll_len(pArrayListEmployee);
 
-    free(empleados);
+    for(i=0;i<len;i++)
+    {
+        empleadoAux =(Employee*) ll_get(pArrayListEmployee,i);
 
-    return retorno;
+        if(empleadoAux->id == id)
+        {
+            indice = ll_indexOf(pArrayListEmployee, empleadoAux);
+            break;
+        }
+
+        indice = -1;
+    }
+
+    return indice;
 }
 
 void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
@@ -116,7 +128,7 @@ void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
                 }
                 break;
             case 2:
-                while(getInt(&horasAux,"Ingrese las horas: ","Error,el dia tiene 24hs",0,24)!=0);
+                while(getIntIlimit(&horasAux,"Ingrese las horas: ","Error,el numero no puede se menor a cero",0)!=0);
                 if(confirmar("Confirmar:","Canselar:")==0)
                 {
                     employee_setHorasTrabajadas(empleado,horasAux);
@@ -134,8 +146,60 @@ void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
                 }
                     break;
             default:
-                printf("salir");
+                printf("\nSalio del menu de modificar\n");
             }
 
         }while(opcion != 4);
+}
+
+int menuSort(LinkedList* pArrayListEmployee)
+{
+    int retorno;
+    int opcion;
+
+    do{
+        while(getInt(&opcion,"1.Ord.Legajo\n2.Ord.Nombre\n3.Ord.Horas Trabajadas\n4.Ord.sueldo\n5.Salir\nIngresar opcion: ","Error,Solo puiede ingresar numeros de las opciones del menu",1,5)!=0);
+
+        switch(opcion)
+        {
+            case 1:
+                while(getInt(&opcion,"[0] mayor a menor\n[1] de menor a mayor\nIngrese la opcion: ","Error,Solo puiede ingresar [0] o [1]",0,1)!=0);
+                if(opcion==0)
+                {
+                    printf("\nOrdenando...");
+                    ll_sort(pArrayListEmployee,compararPorLegajo,opcion);
+                    retorno = 0;
+                }
+                printf("Listo\n\n");
+                break;
+            case 2:
+                while(getInt(&opcion,"[0] Z - A\n[1] A - Z\nIngrese la opcion: ","Error,Solo puiede ingresar [0] o [1]",0,1)!=0);
+                if(opcion==0)
+                {
+                   ll_sort(pArrayListEmployee,compararPorNombre,opcion);
+                   retorno = 0;
+                }
+                break;
+            case 3:
+                while(getInt(&opcion,"[0] mayor a menor\n[1] de menor a mayor\nIngrese la opcion: ","Error,Solo puiede ingresar [0] o [1]",0,1)!=0);
+                if(opcion==0)
+                {
+                   ll_sort(pArrayListEmployee,compararPorHoras,opcion);
+                   retorno = 0;
+                }
+                break;
+            case 4:
+                while(getInt(&opcion,"[0] mayor a menor\n[1] de menor a mayor\nIngrese la opcion: ","Error,Solo puiede ingresar [0] o [1]",0,1)!=0);
+                if(opcion==0)
+                {
+                   ll_sort(pArrayListEmployee,compararPorSueldo,opcion);
+                   retorno = 0;
+                }
+                break;
+            default:
+                printf("\nEsta saliendo del menu de ordenamiento\n\n");
+                break;
+        }
+    }while(opcion!=5);
+    return retorno;
 }

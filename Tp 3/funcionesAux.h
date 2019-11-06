@@ -10,5 +10,6 @@ int idAuto(LinkedList* pArrayListEmployee,int valMenor);
 int idMayor(LinkedList* pArrayListEmployee,int valMenor);
 int agregarEmpleado(LinkedList* pArrayListEmployee,Employee*);
 void mostrarTodosLosEmpleado(LinkedList* pArrayListEmployee);
-int validaId(LinkedList* pArrayListEmployee,int id);
+int validaId(LinkedList* pArrayListEmployee);
 void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* );
+int menuSort(LinkedList* pArrayListEmployee);

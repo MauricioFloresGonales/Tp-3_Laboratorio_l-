@@ -41,9 +41,8 @@ int employee_setNombre(Employee* this,char* nombre)
 
     int todoOk = 0;
 
-    if( this != NULL && nombre != NULL && strlen(nombre) > 3)
+    if( this != NULL && nombre != NULL && strlen(nombre) >= 2)
     {
-
         strcpy(this->nombre, nombre);
         todoOk = 1;
     }
@@ -132,7 +131,7 @@ Employee* employee_new()
     if( this != NULL)
     {
         this->id = 0;
-        strcpy(this->nombre, "");
+        strcpy(this->nombre,"");
         this->horasTrabajadas = 0;
         this->sueldo = 0;
     }
@@ -143,40 +142,23 @@ Employee* employee_new()
 
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr)
 {
+    Employee* empleado = employee_new();
 
+    int id = atoi(idStr);
+    int horas = atoi(horasTrabajadasStr);
+    float sueldo = atof(sueldoStr);
+    char nombre[51];
+    strcpy(nombre,nombreStr);
 
-    Employee* em = malloc(sizeof(Employee));
-    if(em!=NULL)
+    if(empleado!=NULL)
     {
-    em->id=atoi(idStr);
-    strcpy(em->nombre,nombreStr);
-    em->horasTrabajadas=atoi(horasTrabajadasStr);
-    em->sueldo=atof(sueldoStr);
-    employee_setSueldo(em,atof(sueldoStr));
+        employee_setId(empleado,id);
+        employee_setNombre(empleado,nombre);
+        employee_setHorasTrabajadas(empleado,horas);
+        employee_setSueldo(empleado,sueldo);
 
     }
-return em;
-      /*  if (idStr != NULL && nombreStr != NULL && horasTrabajadasStr != NULL && sueldoStr != NULL)
-        {
-            this  = employee_new();
-
-            if( this != NULL){
-
-            if( !employee_setId(this, atoi(idStr))||
-
-                !employee_setNombre(this, nombreStr) ||
-
-                !employee_setHorasTrabajadas(this, atoi(horasTrabajadasStr)) ||
-
-                !employee_setSueldo(this, atof(sueldoStr)))
-                       {
-                            free(this);
-                            this = NULL;
-                       }
-            }
-        }*/
-
-    return em;
+    return empleado;
 }
 
 
@@ -258,4 +240,26 @@ int compararPorNombre(void*empleadoUno,void*empleadoDos)
 
 }
 
+int compararPorHoras(void* empleadoUno,void* empleadoDos)
+{
+    int compara = -1;
+    int sueldoUno;
+    int sueldoDos;
 
+    Employee* empleado1= (Employee*)empleadoUno;
+    Employee* empleado2 = (Employee*)empleadoDos;
+
+    employee_getHorasTrabajadas(empleado1,&sueldoUno);
+    employee_getHorasTrabajadas(empleado2,&sueldoDos);
+
+    if(sueldoUno > sueldoDos)
+    {
+        compara = 1;
+    }else{
+        if(sueldoUno==sueldoDos)
+        {
+            compara = 0;
+        }
+    }
+    return compara;
+}

@@ -42,30 +42,52 @@ int main()
         switch(option)
         {
             case 1:
-                controller_loadFromText("data.csv",listaEmpleados);
+                if(controller_loadFromText("data.csv",listaEmpleados)==0);
+                {
+                    printf("los datos fueron cargados\n");
+                }
+                system("pause");
+                system("cls");
                 break;
             case 2:
-                controller_loadFromBinary("nuevo",listaEmpleados);
+                controller_loadFromBinary("nuevo",listaEmpleados);//falta
                 break;
             case 3:
                 controller_addEmployee(listaEmpleados);
+                system("pause");
+                system("cls");
                 break;
             case 4:
                 controller_editEmployee(listaEmpleados);
+                system("pause");
+                system("cls");
                 break;
             case 5:
+                controller_removeEmployee(listaEmpleados);
+                system("pause");
+                system("cls");
                 break;
             case 6:
-                mostrarTodosLosEmpleado(listaEmpleados);
+                controller_ListEmployee(listaEmpleados);
+                system("pause");
+                system("cls");
                 break;
             case 7:
+                menuSort(listaEmpleados);
+                system("pause");
+                system("cls");
                 break;
             case 8:
+
+                system("pause");
+                system("cls");
                 break;
             case 9:
-            break;
+                system("pause");
+                system("cls");
+                break;
             default:
-                printf("SALIR\n");
+                printf("\nUSTED ACABA DE SALIR\n");
                 break;
         }
     }while(option != 10);

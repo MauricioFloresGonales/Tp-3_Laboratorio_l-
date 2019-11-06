@@ -26,6 +26,8 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
         retorno = parser_EmployeeFromText(pFile,pArrayListEmployee);
 
         fclose(pFile);
+
+        retorno = 0;
     }
 
     return retorno;
@@ -85,42 +87,28 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    int id;
-    int modificar;
-
-    mostrarTodosLosEmpleado(pArrayListEmployee);
-    getIntIlimit(&id,"Ingrese el Id del empleado que quiera modificar: ","Error,el numero no puede ser menor a 1",1);
-
     Employee* empleadoAux;
-    int len;
-    int i;
+    int indice;
+    int retorno;
 
-    len = ll_len(pArrayListEmployee);
-    for(i=0;i<len;i++)
+    indice = validaId(pArrayListEmployee);
+
+    if(indice>1)
     {
-        empleadoAux =(Employee*) ll_get(pArrayListEmployee,i);
-        int indice = ll_indexOf(pArrayListEmployee, empleadoAux);
-        if(empleadoAux->id == id){
-            employee_setHorasTrabajadas(empleadoAux, 123);
-
-            ll_set(pArrayListEmployee, indice, empleadoAux);
-        }
-    }
-
-
-
-
-    modificar =  ll_indexOf(pArrayListEmployee,empleadoAux->id);
-
-    if(validaId(pArrayListEmployee,modificar)==0)
-    {
-        empleadoAux =(Employee*) ll_get(pArrayListEmployee,modificar);
+        empleadoAux =(Employee*) ll_get(pArrayListEmployee,indice);
         modicaficarEmpleado(pArrayListEmployee,empleadoAux);
-        //int ll_set(LinkedList* this, int index,void* pElement);PODRIA USAR ESTA FUNCION PARA NO USAR LA FUNCION DE ARRIBA??
-        ll_push(pArrayListEmployee,modificar, empleadoAux);//ESTA BIEN ?
+        ll_set(pArrayListEmployee, indice, empleadoAux);
+        printf("El empleado modificado quedo asi:\n");
+        mostrarEmpleado(empleadoAux);
+        printf("\n");
+        retorno = 0;
+
+    }else{
+        printf("\nNo se a encontrado el Id ingresado\n\n");
+        retorno = -1;
     }
 
-    return 1;
+    return retorno;
 }
 
 /** \brief Baja de empleado
@@ -132,7 +120,33 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    Employee* empleadoAux;
+    int retorno;
+    int index;
+
+    index = validaId(pArrayListEmployee);
+
+    if(index > 1)
+    {
+        empleadoAux = (Employee*)ll_get(pArrayListEmployee,index);
+        mostrarEmpleado(empleadoAux);
+
+        if(confirmar("Confirmar","Cancelar")==0)
+        {
+            ll_remove(pArrayListEmployee,index);
+            printf("EL empleado fue borrado\n\n");
+            retorno = 0;
+        }else{
+            printf("La accion fue cancelada\n\n");
+            retorno = -1;
+        }
+
+    }else{
+        printf("\nNo se encontro el ID ingresado\n\n");
+        retorno = -1;
+    }
+
+    return retorno;
 }
 
 /** \brief Listar empleados
@@ -144,7 +158,16 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno;
+
+    if(pArrayListEmployee!=NULL)
+    {
+        mostrarTodosLosEmpleado(pArrayListEmployee);
+        retorno = 0;
+    }else{
+        retorno = -1;
+    }
+    return retorno;
 }
 
 /** \brief Ordenar empleados
@@ -156,7 +179,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno;
+
+    return retorno;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).

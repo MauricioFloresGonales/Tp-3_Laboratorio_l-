@@ -163,7 +163,7 @@
 
 1572959596 c:\users\alumno\desktop\tp-3_laboratorio_l-\tp 3\parser.h
 
-1572913012 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\controller.c
+1572999385 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -172,19 +172,19 @@
 	"Inputs.h"
 	"funcionesAux.h"
 
-1572908880 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\linkedlist.h
+1572991300 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\linkedlist.h
 
-1572903833 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\employee.h
+1572999411 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\employee.h
 
-1572902984 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\parser.h
+1572991300 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\parser.h
 
-1572902984 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\inputs.h
+1572991300 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\inputs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1572913012 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.h
+1572999385 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.h
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -192,18 +192,18 @@
 	"Employee.h"
 	"Inputs.h"
 
-1572902984 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\controller.h
+1572991300 c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\controller.h
 
-1572904886 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\employee.c
+1572999481 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\employee.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"Employee.h"
 
-1572913012 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
+1573000514 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
 	"funcionesAux.h"
 
-1572907737 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\inputs.c
+1572991300 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\inputs.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -211,14 +211,14 @@
 	<ctype.h>
 	<conio.h>
 
-1572902984 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\parser.c
+1572991300 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\parser.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"LinkedList.h"
 	"Employee.h"
 
-1572908880 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\main.c
+1572999666 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
