@@ -200,7 +200,7 @@
 	<string.h>
 	"Employee.h"
 
-1573263990 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
+1573267507 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\funcionesaux.c
 	"funcionesAux.h"
 
 1572991300 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\inputs.c
@@ -218,7 +218,7 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1573263990 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\main.c
+1573264174 source:c:\users\pipoca\desktop\tp-3_laboratorio_l-\tp 3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
