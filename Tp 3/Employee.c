@@ -183,11 +183,11 @@ int compararPorLegajo(void* empleadoUno,void* empleadoDos)
     employee_getId(empleado1,&idUno);
     employee_getId(empleado2,&idDos);
 
-    if(empleadoUno > empleadoDos)
+    if(idUno > idDos)
     {
         compara = 1;
     }else{
-        if(empleadoUno==empleadoDos)
+        if(idUno==idDos)
         {
             compara = 0;
         }

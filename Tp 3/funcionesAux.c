@@ -154,7 +154,7 @@ void modicaficarEmpleado(LinkedList* pArrayListEmployee,Employee* empleado)
 
 int menuSort(LinkedList* pArrayListEmployee)
 {
-    int retorno;
+    int retorno = -1;
     int opcion;
 
     do{

@@ -7,6 +7,8 @@
 #include "Inputs.h"
 #include "funcionesAux.h"
 
+#define BIN "binario"
+
 /****************************************************
     Menu:
      1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).
@@ -26,6 +28,9 @@ int main()
 {
     int option;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    int texto = 0;
+    int binario = 0;
+    int validador = 0;
 
     do{
             printf("1. Cargar los datos (modo texto).\n");
@@ -42,52 +47,116 @@ int main()
         switch(option)
         {
             case 1:
-                if(controller_loadFromText("data.csv",listaEmpleados)==0);
+                texto = controller_loadFromText("data.csv",listaEmpleados);
+                if(texto == 0 && binario != 1)
                 {
-                    printf("los datos fueron cargados\n");
+                    printf("los datos fueron cargados en modo Texto\n");
+                    texto = 1;
+                }else if(binario==1)
+                {
+                     printf("El archivo ya fue cargado en modo Binario\n");
+                }else{
+                    printf("El archivo no existe\n");
                 }
                 system("pause");
                 system("cls");
                 break;
             case 2:
-                controller_loadFromBinary("nuevo",listaEmpleados);//falta
+                binario = controller_loadFromBinary("databin",listaEmpleados);
+                if(binario == 0 && texto != 1)
+                {
+                    printf("los datos fueron cargados en modo Binario\n");
+                    binario = 1;
+                }else if(texto==1)
+                {
+                     printf("El archivo ya fue cargado en modo Texto\n");
+                }else{
+                    printf("El archivo no existe\n");
+                }
+                system("pause");
+                system("cls");
+                //controller_loadFromBinaryAux("data.csv",listaEmpleados);<--- Esta funcion me ayudo a crear el archivo binario
                 break;
             case 3:
-                controller_addEmployee(listaEmpleados);
+                validador = controller_addEmployee(listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("Agregado con exito\n");
+                }else{
+                    printf("Empleado no agregado\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 4:
-                controller_editEmployee(listaEmpleados);
+                validador = controller_editEmployee(listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("Modificacion exitosa\n");
+                }else{
+                    printf("\nNo se a encontrado el Id ingresado\n\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 5:
-                controller_removeEmployee(listaEmpleados);
+                validador = controller_removeEmployee(listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("EL empleado fue borrado\n\n");
+                }else if(validador==1)
+                {
+                    printf("La accion fue cancelada\n\n");
+                }else{
+                    printf("\nNo se encontro el ID ingresado\n\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 6:
-                controller_ListEmployee(listaEmpleados);
+                validador = controller_ListEmployee(listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("Todos los empleados fueron mostrados\n");
+                }else{
+                    printf("No hay nada que mostrar\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 7:
-                menuSort(listaEmpleados);
+                validador = controller_sortEmployee(listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("Ordenados con exito\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 8:
-
+                validador = controller_saveAsText("data.csv",listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("los datos fueron guardados en modo Texto\n");
+                }else{
+                    printf("El archivo no existe\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             case 9:
+                validador = controller_saveAsBinary("databin",listaEmpleados);
+                if(validador == 0)
+                {
+                    printf("los datos guardados en modo Binario\n");
+                }else{
+                    printf("El archivo no existe\n");
+                }
                 system("pause");
                 system("cls");
                 break;
             default:
-                printf("\nUSTED ACABA DE SALIR\n");
+                printf("\n USTED ACABA DE SALIR\n");
                 break;
         }
     }while(option != 10);

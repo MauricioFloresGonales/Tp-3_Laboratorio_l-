@@ -47,10 +47,43 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 
     if(pFile!=NULL)
     {
-
         retorno = parser_EmployeeFromBinary(pFile,pArrayListEmployee);
 
         fclose(pFile);
+    }else{
+        printf("NO Existe\n");
+    }
+    return retorno;
+}
+
+
+int controller_loadFromBinaryAux(char* path , LinkedList* pArrayListEmployee)
+{
+    FILE* pFile = fopen(path,"r");
+    FILE* pFileBin = fopen("databin","wb");
+
+    Employee* empleado;
+    char idAux[51];
+    char nombreAux[51];
+    char horasTrabajadasAux[51];
+    char sueldoAux[51];
+    int retorno =-1;
+
+    if(pFile!=NULL && pFileBin!=NULL)
+    {
+        fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",idAux,nombreAux,horasTrabajadasAux,sueldoAux);
+
+        while(!feof(pFile))
+        {
+            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",idAux,nombreAux,horasTrabajadasAux,sueldoAux);
+            empleado = employee_newParametros(idAux,nombreAux,horasTrabajadasAux,sueldoAux);
+            ll_add(pArrayListEmployee,empleado);
+            fwrite(empleado,sizeof(Employee),1,pFileBin);
+        }
+
+        fclose(pFile);
+        fclose(pFileBin);
+        retorno = 0;
     }
     return retorno;
 }
@@ -66,16 +99,19 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* empleado = employee_new();
     int puede;
+    int retorno;
+
     puede = agregarEmpleado(pArrayListEmployee,empleado);
+
     if(puede == 0)
     {
         ll_add(pArrayListEmployee,empleado);
-
+        retorno = 0;
     }else{
-        printf("Empleado no agregado\n");
+        retorno = -1;
     }
 
-    return 1;
+    return retorno;
 }
 
 /** \brief Modificar datos de empleado
@@ -104,7 +140,6 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         retorno = 0;
 
     }else{
-        printf("\nNo se a encontrado el Id ingresado\n\n");
         retorno = -1;
     }
 
@@ -134,15 +169,12 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
         if(confirmar("Confirmar","Cancelar")==0)
         {
             ll_remove(pArrayListEmployee,index);
-            printf("EL empleado fue borrado\n\n");
             retorno = 0;
         }else{
-            printf("La accion fue cancelada\n\n");
-            retorno = -1;
+            retorno = 1;
         }
 
     }else{
-        printf("\nNo se encontro el ID ingresado\n\n");
         retorno = -1;
     }
 
@@ -181,6 +213,8 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int retorno;
 
+    retorno = menuSort(pArrayListEmployee);
+
     return retorno;
 }
 
@@ -193,7 +227,30 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* pFile = fopen(path,"w");
+    int len;
+    int i;
+    int retorno = -1;
+
+    if(pFile!=NULL)
+    {
+        Employee* empleado;
+
+        len = ll_len(pArrayListEmployee);
+
+        fprintf(pFile,"id,nombre,HorasTrabajadas,sueldo\n");
+
+        for(i=0;i<len;i++)
+        {
+            empleado = ll_get(pArrayListEmployee,i);
+            fprintf(pFile,"%d,%s,%d,%f\n",empleado->id,empleado->nombre,empleado->horasTrabajadas,empleado->sueldo);
+        }
+
+        fclose(pFile);
+        retorno = 0;
+    }
+
+    return retorno;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -205,6 +262,27 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    FILE* pFile = fopen(path,"wb");
+    int len;
+    int i;
+    int retorno = -1;
+
+    if(pFile!=NULL)
+    {
+        Employee* empleado;
+
+        len = ll_len(pArrayListEmployee);
+
+        for(i=0;i<len;i++)
+        {
+            empleado = ll_get(pArrayListEmployee,i);
+            fwrite(empleado,sizeof(Employee),1,pFile);
+        }
+
+        fclose(pFile);
+        retorno = 0;
+    }
+
+    return retorno;
 }
 
